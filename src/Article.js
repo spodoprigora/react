@@ -20,7 +20,6 @@ export default class Article extends Component  {
 
     this.state = {
       isOpen: false,
-      showComments: false,
     }
   }
   render() {
@@ -49,25 +48,8 @@ export default class Article extends Component  {
     return (
       <div>
         <section>{article.text}</section>
-        <button onClick={this.toogleComments}>
-          {this.state.showComments ? 'Hide' : 'Show'}
-        </button>
-        {this.getComments(article)}
+        <CommentList comments = {article.comments}/>
       </div>
     )
   };
-
-  getComments = (article) => {
-    if(!article.comments || !this.state.showComments) return null;
-    return (
-      <CommentList comments = {article.comments}/>
-    )
-  };
-
-  toogleComments = () => {
-    this.setState({
-      showComments: !this.state.showComments
-    })
-  };
-
 }
